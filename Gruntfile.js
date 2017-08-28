@@ -53,6 +53,16 @@ require("load-grunt-tasks")(grunt);
           server: "."
         }
       }
+    },
+    csso: {
+      style: {
+        options: {
+          report: "gzip"
+        },
+        files: {
+          "css/style.min.css": ["css/style.css"]
+        }
+      }
     }
 
   });
