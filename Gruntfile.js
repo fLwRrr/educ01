@@ -63,6 +63,17 @@ require("load-grunt-tasks")(grunt);
           "css/style.min.css": ["css/style.css"]
         }
       }
+    },
+    imagemin: {
+      images: {
+        options: {
+          optimizationLevel: 3
+        },
+        files: [{
+          expand: true,
+          src: ["img/**/*.{png,jpg,gif}"]
+        }]
+      }
     }
 
   });
