@@ -1,25 +1,28 @@
 module.exports = function (grunt) {
 
-  require("load-grunt-tasks")(grunt);
+require("load-grunt-tasks")(grunt);
 
   grunt.initConfig({
+
     sass: {
       style: {
-        files: [
-          "css/style.css":"scss/style.scss"
-        ]
+        files: {
+          "css/style.css" : "scss/style.scss"
+        }
       }
     },
     postcss: {
       options: {
         processors: [
-          require("autoprefixer")({browsers: [
+          require("autoprefixer")({browsers:
+            [
             "last 1 version",
             "last 2 Chrome versions",
-            "last 2 Firefox versions".
-            "last 2 Opera versions".
+            "last 2 Firefox versions",
+            "last 2 Opera versions",
             "last 2 Edge versions"
-          ]})
+            ]
+          })
         ]
       },
       style: {
@@ -28,19 +31,19 @@ module.exports = function (grunt) {
     },
     watch: {
       style: {
-        files: [
-          "scss/**/*.scss"
-        ],
+        files:
+          "scss/**/*.scss",
         tasks: [
           "sass", "postcss"
         ]
       }
     },
     browserSync: {
-      server {
+      server: {
         bsFiles: {
           src: [
-            "*.html", "css/*.css"
+            "*.html",
+            "css/*.css"
           ]
         },
         options: {
