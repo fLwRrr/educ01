@@ -22,6 +22,9 @@ require("load-grunt-tasks")(grunt);
             "last 2 Opera versions",
             "last 2 Edge versions"
             ]
+          }),
+          require("css-mqpacker")({
+            sort: true
           })
         ]
       },
