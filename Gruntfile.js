@@ -74,8 +74,30 @@ require("load-grunt-tasks")(grunt);
           src: ["img/**/*.{png,jpg,gif}"]
         }]
       }
+    },
+    svgstore: {
+      options: {
+        svg: {
+          display: none
+        }
+      },
+      symbols: {
+        files: {
+          "img/symbols.svg": ["img/icons/*.svg"]
+        }
+      }
+    },
+    svgmin: {
+      symbols: {
+        files: [{
+          expand: true,
+          src: ["img/icons/*.svg"]
+        }]
+      }
     }
 
   });
+
+grunt.registerTask("symbols", ["svgmin","svgstore"]);
 
 };

@@ -1,6 +1,6 @@
 {
   "name": "firstproject",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Обучаюсь верстке с git+grunt",
   "author": "Александр Дроздов",
   "repository": {
@@ -18,10 +18,15 @@
     "grunt-css-mqpacker": "^3.0.1",
     "grunt-csso": "^2.2.0",
     "grunt-postcss": "^0.8.0",
+    "grunt-svgmin": "^4.0.0",
+    "grunt-svgstore": "^1.0.0",
     "load-grunt-tasks": "^3.5.2"
   },
   "scripts": {
     "build": "grunt sass && grunt postcss",
     "start": "npm run build && grunt serve"
+  },
+  "dependencies": {
+    "grunt-cli": "^1.2.0"
   }
 }
