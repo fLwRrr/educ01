@@ -7,7 +7,7 @@ require("load-grunt-tasks")(grunt);
     sass: {
       style: {
         files: {
-          "css/style.css" : "scss/style.scss"
+          "build/css/style.css" : "scss/style.scss"
         }
       }
     },
@@ -29,15 +29,23 @@ require("load-grunt-tasks")(grunt);
         ]
       },
       style: {
-        src: "css/*.css"
+        src: "build/css/*.css"
       }
     },
     watch: {
+      html: {
+        files: [
+          "*.html"
+        ],
+        tasks: [
+          "copy:html"
+        ]
+      },
       style: {
         files:
           "scss/**/*.scss",
         tasks: [
-          "sass", "postcss"
+          "sass", "postcss", "csso"
         ]
       }
     },
@@ -45,12 +53,12 @@ require("load-grunt-tasks")(grunt);
       server: {
         bsFiles: {
           src: [
-            "*.html",
-            "css/*.css"
+            "build/*.html",
+            "build/css/*.css"
           ]
         },
         options: {
-          server: "."
+          server: "build"
         }
       }
     },
@@ -60,7 +68,7 @@ require("load-grunt-tasks")(grunt);
           report: "gzip"
         },
         files: {
-          "css/style.min.css": ["css/style.css"]
+          "build/css/style.min.css": ["build/css/style.css"]
         }
       }
     },
@@ -71,7 +79,7 @@ require("load-grunt-tasks")(grunt);
         },
         files: [{
           expand: true,
-          src: ["img/**/*.{png,jpg,gif}"]
+          src: ["build/img/**/*.{png,jpg,gif}"]
         }]
       }
     },
@@ -83,7 +91,7 @@ require("load-grunt-tasks")(grunt);
       },
       symbols: {
         files: {
-          "img/symbols.svg": ["img/icons/*.svg"]
+          "build/img/symbols.svg": ["img/icons/*.svg"]
         }
       }
     },
@@ -91,13 +99,48 @@ require("load-grunt-tasks")(grunt);
       symbols: {
         files: [{
           expand: true,
-          src: ["img/icons/*.svg"]
+          src: ["build/img/icons/*.svg"]
         }]
       }
+    },
+    copy: {
+      build: {
+        files: [{
+          expand: true,
+          src: [
+            "fonts/**/*.{woff,woff2}",
+            "img/**",
+            "js/**",
+            "*.html"
+          ],
+          dest: "build"
+        }]
+      }.
+      html: {
+        files: [{
+          expand: true,
+          src: ["*.html"],
+          dest: "build"
+        }]
+      }
+    },
+    clean: {
+      build: ["build"]
     }
 
   });
 
+grunt.registerTask("serve", ["browserSync","watch"]);
 grunt.registerTask("symbols", ["svgmin","svgstore"]);
+
+grunt.registerTask("build", [
+    "clean",
+    "copy",
+    "sass",
+    "postcss",
+    "csso",
+    "symbols",
+    "imagemin"
+]);
 
 };

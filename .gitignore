@@ -5,3 +5,11 @@ $ cat .gitignore
 .sass-cache/
 node_modules/
 package-lock.json
+build/
+.DS_Store
+.idea
+*.log
+*.psd
+*.ai
+*.pdf
+css/*.css
