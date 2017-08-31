@@ -86,13 +86,11 @@ require("load-grunt-tasks")(grunt);
     svgstore: {
       options: {
         svg: {
-          display: none
+          style: "display: none"
         }
       },
       symbols: {
-        files: {
-          "build/img/symbols.svg": ["img/icons/*.svg"]
-        }
+        files: {"build/img/symbols.svg": ["img/icons/*.svg"]}
       }
     },
     svgmin: {
@@ -115,7 +113,7 @@ require("load-grunt-tasks")(grunt);
           ],
           dest: "build"
         }]
-      }.
+      },
       html: {
         files: [{
           expand: true,
